@@ -5,6 +5,7 @@
 *.so
 *.dylib
 bin/
+tmp/
 
 # Test binary, built with `go test -c`
 *.test
@@ -30,5 +31,3 @@ go.work.sum
 .vscode/
 *.swp
 *.swo
-*STRUCTURE.md
-*Plain-Requirements.md
