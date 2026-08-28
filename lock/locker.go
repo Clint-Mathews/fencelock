@@ -17,6 +17,7 @@ type Locker interface {
 	TryAcquire(ctx context.Context, resource string, ttl time.Duration) (*Lease, error)
 }
 
+// Lease represents a held lock and its fencing token.
 type Lease struct {
 	Resource  string
 	Token     int64

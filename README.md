@@ -22,8 +22,21 @@ best-effort — kept intentionally to demonstrate where it's weaker).
 
 ## Quickstart
 
+1. Build
+```bash
+go build ./...
+```
+
+2. Test
 ```bash
 go test ./...
+```
+
+
+### Run related services
+
+```bash
+docker-compose up -d
 ```
 
 (Full instructions land once Phase 1 of the roadmap is complete — see
