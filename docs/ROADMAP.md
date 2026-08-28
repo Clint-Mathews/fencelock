@@ -4,12 +4,10 @@ Phased build plan (~8–16 hrs total). Status is tracked here as the single
 source of truth for progress — update it as work lands instead of writing
 separate status notes.
 
-Legend: ☐ not started · ▶ in progress · ✅ done
-
 ## Phase 1 — Skeleton (1–2 hrs)
-- ☐ `go mod init`
-- ☐ Create `lock/`, `etcdlock/`, `redislock/`, `fencedstore/`, `cmd/demo/` per [STRUCTURE.md](STRUCTURE.md)
-- ☐ Define `Locker`, `Lease`, `FencedResource` interfaces in `lock/` (no implementations yet)
+- [x] `go mod init`
+- [x] Create `lock/`, `etcdlock/`, `redislock/`, `fencedstore/`, `cmd/demo/` per [STRUCTURE.md](STRUCTURE.md)
+- [x] Define `Locker`, `Lease`, `FencedResource` interfaces in `lock/` (no implementations yet)
 
 ## Phase 2 — etcd implementation (2–4 hrs)
 - ☐ Wire up `go.etcd.io/etcd/client/v3/concurrency` sessions/mutexes
