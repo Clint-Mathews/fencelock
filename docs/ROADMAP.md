@@ -22,8 +22,8 @@ separate status notes.
 - [x] Document this backend as intentionally "weaker" — the Redlock counterexample
 
 ## Phase 4 — Toy fenced resource (1–2 hrs)
-- ☐ `fencedstore.Memory`: `map[string]int64` last-seen-token, race-safe
-- ☐ `fencedstore.Postgres`: `UPDATE ... WHERE last_token < $1`
+- [x] `fencedstore.Memory`: `map[string]int64` last-seen-token, race-safe
+- [x] `fencedstore.Postgres`: `UPDATE ... WHERE last_token < $1`
 
 ## Phase 5 — Test suite (2–4 hrs — highest-signal phase)
 - ☐ Test A: naive lock fails (unguarded write after pause corrupts state)
