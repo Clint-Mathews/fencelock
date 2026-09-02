@@ -10,16 +10,16 @@ separate status notes.
 - [x] Define `Locker`, `Lease`, `FencedResource` interfaces in `lock/` (no implementations yet)
 
 ## Phase 2 — etcd implementation (2–4 hrs)
-- ☐ Wire up `go.etcd.io/etcd/client/v3/concurrency` sessions/mutexes
-- ☐ Expose the created key's mod revision as `Lease.Token`
-- ☐ Implement `Acquire` / `TryAcquire` / `Release` / `Refresh`
-- ☐ `docker-compose.yml` with local etcd for dev/test
+- [x] Wire up `go.etcd.io/etcd/client/v3/concurrency` sessions/mutexes
+- [x] Expose the created key's mod revision as `Lease.Token`
+- [x] Implement `Acquire` / `TryAcquire` / `Release` / `Refresh`
+- [x] `docker-compose.yml` with local etcd for dev/test
 
 ## Phase 3 — Redis implementation (2–3 hrs, optional but recommended)
-- ☐ `SET key value NX PX ttl` acquire
-- ☐ Lua script for safe compare-and-delete release (client-owned token)
-- ☐ `INCR` on separate counter key for fencing token issuance
-- ☐ Document this backend as intentionally "weaker" — the Redlock counterexample
+- [x] `SET key value NX PX ttl` acquire
+- [x] Lua script for safe compare-and-delete release (client-owned token)
+- [x] `INCR` on separate counter key for fencing token issuance
+- [x] Document this backend as intentionally "weaker" — the Redlock counterexample
 
 ## Phase 4 — Toy fenced resource (1–2 hrs)
 - ☐ `fencedstore.Memory`: `map[string]int64` last-seen-token, race-safe
