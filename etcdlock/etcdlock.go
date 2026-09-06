@@ -19,8 +19,18 @@ func New(client *clientv3.Client) *Locker {
 	}
 }
 
+// etcd lease TTL is an integer number of seconds. int(d.Seconds()) on ms is 0,
+// so concurrency.WithTTL(0) is ignored (default 60s). We round up and never pass a sub-second TTL in tests that need expiry.
+func ttlSeconds(d time.Duration) int {
+	s := int((d + time.Second - 1) / time.Second)
+	if s < 1 {
+		return 1
+	}
+	return s
+}
+
 func (l *Locker) acquire(ctx context.Context, resource string, ttl time.Duration, blocking bool) (*lock.Lease, error) {
-	session, err := concurrency.NewSession(l.client, concurrency.WithTTL(int(ttl.Seconds())))
+	session, err := concurrency.NewSession(l.client, concurrency.WithTTL(ttlSeconds(ttl)))
 	if err != nil {
 		return nil, err
 	}

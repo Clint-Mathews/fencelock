@@ -15,7 +15,7 @@ type Memory struct {
 	data      map[string][]byte
 }
 
-func MewMemory() *Memory {
+func NewMemory() *Memory {
 	return &Memory{
 		lastToken: make(map[string]int64),
 		data:      make(map[string][]byte),
