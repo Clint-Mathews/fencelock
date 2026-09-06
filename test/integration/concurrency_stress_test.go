@@ -11,7 +11,7 @@ import (
 )
 
 // TestConcurrencyStress races N goroutine against the same resource and
-// assert: no twor ever hold overlapping leases, and tokens strictly
+// assert: no two ever hold overlapping leases, and tokens strictly
 // increase in order leases were granted. Run with -race.
 
 func TestConcurrencyStress(t *testing.T) {
