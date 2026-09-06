@@ -33,16 +33,9 @@ separate status notes.
 - [x] `testcontainers-go` for real etcd/Redis in CI (no mocking distributed races)
 
 ## Phase 6 — Polish
-- ☐ README with architecture/sequence diagram (pause → expire → fence)
-- ☐ cmd/demo`: two-process CLI demo of the race + rejection, live
-- ☐ GitHub Actions CI running full suite incl. containerized backends
-
-## Phase 7 — Publish
-- ☐ Repo + tests + solid README live, `go test ./...` runnable by strangers
-- ☐ Blog post: "Why your distributed lock is probably broken"
-- ☐ LinkedIn post (reuse sequence diagram, link in first comment)
-- ☐ X/Twitter thread (hook → diagram → insight → code → repo link → blog link → source references)
-- ☐ Follow-up single-tweet repost a day or two later
+- [x] README with architecture/sequence diagram (pause → expire → fence)
+- [x] cmd/demo`: two-process CLI demo of the race + rejection, live
+- [x] GitHub Actions CI running full suite incl. containerized backends
 
 ## Explicitly deferred / stretch (not required for v1)
 - Postgres advisory-lock backend as a third `Locker` implementation (mentioned as a possible extension in the blog CTA).

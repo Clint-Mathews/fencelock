@@ -56,3 +56,27 @@ highest it has already seen.
 See [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) §0 for the full framing,
 and [docs/adr/0002-fencing-token-source-of-truth.md](docs/adr/0002-fencing-token-source-of-truth.md)
 for how the token itself is sourced and why it must never be client-computed.
+
+```mermaid
+sequenceDiagram
+    participant A as Client A
+    participant L as Lock Service (etcd)
+    participant R as FencedResource
+
+    A->>L: Acquire(resource, ttl=2s)
+    L-->>A: Lease{token=7}
+    A->>R: Write(token=7, "A's data")
+    R-->>A: OK (7 >= last seen)
+
+    Note over A: Client A pauses (GC stall) for 3s > ttl
+
+    participant B as Client B
+    B->>L: Acquire(resource, ttl=10s)
+    L-->>B: Lease{token=8}
+    B->>R: Write(token=8, "B's data")
+    R-->>B: OK (8 >= 7)
+
+    Note over A: Client A wakes up, still believes it holds the lock
+    A->>R: Write(token=7, "A's stale data")
+    R-->>A: REJECTED (7 < 8)
+```
