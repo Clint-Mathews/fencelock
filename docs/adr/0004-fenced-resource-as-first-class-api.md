@@ -27,7 +27,7 @@ mistake — proving the token exists without proving it does anything.
 - `fencedstore` depends only on `lock`, never on `etcdlock`/`redislock` —
   enforcement must be demonstrably backend-agnostic, since the whole point
   is that the resource, not the lock service, is what enforces ordering.
-- The README/blog explicitly documents the limitation this implies: fencing
+- The README explicitly documents the limitation this implies: fencing
   tokens only work when the resource cooperates. You cannot fence a write to
   an arbitrary third-party API that doesn't check tokens — this is not a bug
   to fix, it's a boundary of the pattern, and it must be stated honestly

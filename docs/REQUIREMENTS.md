@@ -40,7 +40,7 @@ held the lock.
 - FR-4.1: An etcd-backed `Locker` implementation is required (primary backend), using `clientv3/concurrency` sessions/mutexes with the revision number exposed as the fencing token.
 - FR-4.2: A Redis-backed `Locker` implementation is required (secondary backend), using `SET NX PX` + Lua-scripted compare-and-delete release + `INCR` for token issuance.
 - FR-4.3: Both backends implement the same `Locker` interface from `lock/`; no backend-specific types leak into `lock/`.
-- FR-4.4: The Redis backend must be documented (README + blog) as "best-effort," explicitly citing the Redlock critique — it must not be presented as equivalent-strength to etcd.
+- FR-4.4: The Redis backend must be documented in the README as "best-effort," explicitly citing the Redlock critique — it must not be presented as equivalent-strength to etcd.
 
 ### FR-5 — Demo CLI
 - FR-5.1: `cmd/demo` must let a user run two processes and visually observe: client A acquires → client A "pauses" past TTL → client B acquires with a higher token → client A's write is rejected by the fenced resource.
@@ -52,7 +52,7 @@ held the lock.
 - NFR-3 (Server-side TTL): Lease expiry enforcement must not depend solely on wall-clock comparisons computed by the client; etcd lease TTL is enforced server-side.
 - NFR-4 (API clarity): The `Locker` and `FencedResource` interfaces must be defined and stable before backend implementation begins (interface-first, per Phase 1).
 - NFR-5 (CI): GitHub Actions must run the full test suite, including containerized-backend tests, on every push/PR.
-- NFR-6 (Honesty in docs): README/blog must explicitly state what fencing tokens do *not* solve (can't fence a write to a third-party API that doesn't check tokens) rather than overclaiming.
+- NFR-6 (Honesty in docs): The README must explicitly state what fencing tokens do *not* solve (can't fence a write to a third-party API that doesn't check tokens) rather than overclaiming.
 
 ## 3. Explicit Non-Goals
 
@@ -72,6 +72,3 @@ held the lock.
 ## 5. Deliverables Outside Code
 
 - README with an architecture/sequence diagram of the pause → expire → fence scenario.
-- Blog post: "Why your distributed lock is probably broken."
-- LinkedIn post + X/Twitter thread reusing the same diagram.
-- Publish order: repo + tests + README → blog → LinkedIn → X thread, spaced a day or two apart.

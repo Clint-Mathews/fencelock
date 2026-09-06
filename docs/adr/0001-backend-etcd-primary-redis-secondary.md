@@ -32,7 +32,7 @@ consensus rather than re-implemented.
 
 Implement Redis as a secondary backend behind the same `Locker` interface,
 explicitly labeled "best-effort." Use it in the test suite (Test D) and the
-writeup to demonstrate the specific hazard etcd's linearizability closes.
+README to demonstrate the specific hazard etcd's linearizability closes.
 
 ## Consequences
 - `lock/` interfaces must not assume anything etcd-specific (e.g., no
@@ -40,7 +40,7 @@ writeup to demonstrate the specific hazard etcd's linearizability closes.
   same contract.
 - The Redis implementation still needs its own fencing counter (`INCR` on a
   separate key), since Redis has no built-in per-key revision.
-- Documentation (README, blog) must state the strength difference
+- Documentation (README) must state the strength difference
   explicitly rather than presenting both backends as equivalent — this is a
   requirement (see REQUIREMENTS.md FR-4.4), not just a nicety.
 - Test D (etcd vs Redis comparison) becomes required, not optional, because
